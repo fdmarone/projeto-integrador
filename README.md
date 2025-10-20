@@ -13,7 +13,7 @@ Este projeto é uma aplicação Laravel containerizada com Docker, incluindo: PH
 ## 🚀 Instalação do Projeto
 
 1. Clone o repositório:  
-   `git clone https://github.com/seu-usuario/seu-projeto.git && cd seu-projeto`
+   `git clone https://github.com/fdmarone/projeto-integrador.git && cd laravel-app`
 
 2. Copie o arquivo `.env`:  
    `cp .env.example .env`

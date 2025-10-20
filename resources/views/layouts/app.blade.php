@@ -11,14 +11,14 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Bootstrap Bundle JS (com Popper) -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap Select CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta3/dist/css/bootstrap-select.min.css">
 
-
-    <!-- Scripts -->
+    <!-- Vite assets (Tailwind, seu CSS personalizado etc) -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
@@ -40,6 +40,34 @@
             {{ $slot }}
         </main>
     </div>
+
+    <!-- Scripts -->
+
+    <!-- jQuery (obrigatório para Bootstrap Select funcionar) -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <!-- Bootstrap Bundle (com Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Bootstrap Select JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta3/dist/js/bootstrap-select.min.js"></script>
+
+    <!-- Inicialização do Selectpicker -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            $('#categories').selectpicker('destroy').selectpicker({
+                noneSelectedText: 'Nenhuma categoria selecionada',
+                noneResultsText: 'Nenhum resultado encontrado',
+                selectAllText: 'Selecionar todos',
+                deselectAllText: 'Limpar seleção',
+                doneButtonText: 'Fechar',
+                countSelectedText: '{0} categorias selecionadas',
+                maxOptionsText: ['Limite atingido ({n} categorias)', 'Limite do grupo atingido ({n})']
+            });
+        });
+    </script>
+
+
 </body>
 
 </html>

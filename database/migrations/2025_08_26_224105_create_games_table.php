@@ -18,6 +18,7 @@ return new class extends Migration
         $table->decimal('classificacao_acessibilidade', 2, 1); // de 0.0 a 5.0
         $table->string('descricao_acessibilidade'); // pode ser tags separadas por vírgula
         $table->timestamps();
+        
     });
 }
 

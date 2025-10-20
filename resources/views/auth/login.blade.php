@@ -39,9 +39,9 @@
 
                             <div class="d-flex justify-content-between align-items-center">
                                 @if (Route::has('password.request'))
-                                    <a class="small text-decoration-none" href="{{ route('password.request') }}">
-                                        {{ __('Esqueceu a senha?') }}
-                                    </a>
+                                <a class="small text-decoration-none" href="{{ route('password.request') }}">
+                                    {{ __('Esqueceu a senha?') }}
+                                </a>
                                 @endif
 
                                 <x-primary-button class="btn btn-primary">
@@ -49,6 +49,13 @@
                                 </x-primary-button>
                             </div>
                         </form>
+                        <div class="mt-4 text-center">
+                            <span class="small">Ainda não tem uma conta?</span>
+                            <a href="{{ route('register') }}" class="small text-decoration-none ms-1">
+                                Cadastre-se
+                            </a>
+                        </div>
+
                     </div>
                 </div>
             </div>

@@ -15,4 +15,9 @@ class Game extends Model
         'classificacao_acessibilidade',
         'descricao_acessibilidade',
     ];
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }
