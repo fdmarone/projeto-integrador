@@ -22,7 +22,7 @@ class GamesController extends Controller
             })
             ->get();
 
-        return view('dashboard', compact('games', 'categories', 'selected'));
+        return view('welcome', compact('games', 'categories', 'selected'));
     }
 
 

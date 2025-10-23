@@ -15,9 +15,7 @@ use App\Http\Controllers\AdminController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [GamesController::class, 'index'])->name('home');
 
 Route::get('/dashboard', [GamesController::class, 'index'])
     ->middleware(['auth', 'verified'])
