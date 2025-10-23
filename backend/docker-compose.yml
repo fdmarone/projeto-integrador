@@ -1,15 +1,21 @@
-version: '3.8'
+version: "3.8"
 services:
-  db:
+  mysql:
     image: mysql:8
-    container_name: mysql_accessible_games
-    restart: always
+    container_name: projeto_integrador_mysql
+    restart: unless-stopped
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: accessible_games
-      MYSQL_USER: user
-      MYSQL_PASSWORD: password
+      MYSQL_DATABASE: gamesdb
     ports:
       - "3306:3306"
     volumes:
-      - ./mysql-data:/var/lib/mysql
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  mysql_data:
