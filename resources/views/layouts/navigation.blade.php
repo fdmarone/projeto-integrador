@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
     <div class="container-fluid">
         <!-- Logo ou Nome -->
-        <a class="navbar-brand" href="{{ route('dashboard') }}">{{ config('app.name', 'Laravel') }}</a>
+        {{-- <a class="navbar-brand" href="{{ route('dashboard') }}">{{ config('app.name', 'Laravel') }}</a> --}}
 
         <!-- Botão Hamburguer -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -12,13 +12,13 @@
         <!-- Itens do Menu -->
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- Links Esquerda -->
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            {{-- <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}" href="{{ route('dashboard') }}">
                         {{ __('Dashboard') }}
                     </a>
                 </li>
-            </ul>
+            </ul> --}}
 
             <!-- Direita: usuário + logout -->
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
