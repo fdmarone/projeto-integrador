@@ -4,6 +4,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\GamesController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Admin\UsersController as AdminUsersController;
+use App\Http\Controllers\Admin\GamesController as AdminGamesController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -35,6 +37,21 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware(['auth', 'is_admin'])->group(function () {
     Route::get('/dashboard-admin', [AdminController::class, 'index'])->name('dashboard.admin');
+
+    // Usuários
+    Route::get('/users', [AdminUsersController::class, 'index'])->name('users.index');
+    Route::get('/users/{user}/edit', [AdminUsersController::class, 'edit'])->name('users.edit');
+    Route::patch('/users/{user}', [AdminUsersController::class, 'update'])->name('users.update');
+    Route::patch('/users/{user}/toggle-admin', [AdminUsersController::class, 'toggleAdmin'])->name('users.toggleAdmin');
+    Route::delete('/users/{user}', [AdminUsersController::class, 'destroy'])->name('users.destroy');
+
+    // Jogos
+    Route::get('/games', [AdminGamesController::class, 'index'])->name('games.index');
+    Route::get('/games/create', [AdminGamesController::class, 'create'])->name('games.create');
+    Route::post('/games', [AdminGamesController::class, 'store'])->name('games.store');
+    Route::get('/games/{game}/edit', [AdminGamesController::class, 'edit'])->name('games.edit');
+    Route::patch('/games/{game}', [AdminGamesController::class, 'update'])->name('games.update');
+    Route::delete('/games/{game}', [AdminGamesController::class, 'destroy'])->name('games.destroy');
 });
 
 

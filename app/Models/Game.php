@@ -14,6 +14,7 @@ class Game extends Model
         'descricao',
         'classificacao_acessibilidade',
         'descricao_acessibilidade',
+        'imagem_url',
     ];
 
     public function category()
