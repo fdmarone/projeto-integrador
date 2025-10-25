@@ -30,9 +30,45 @@
                     <div class="mt-auto">
                         <p class="mb-1"><strong>Acessibilidade:</strong> {{ $game->classificacao_acessibilidade }}</p>
                         <p class="mb-0"><small>{{ $game->descricao_acessibilidade }}</small></p>
-                        <p class="mb-0"><strong>Categoria:</strong> {{ $game->category->name ?? 'N/A' }}</p>
+                        <p class="mb-2"><strong>Categoria:</strong> {{ $game->category->name ?? 'N/A' }}</p>
+
+                        @auth
+                        @php
+                        $isFav = Auth::user()
+                        ->favoriteGames()
+                        ->where('games.id', $game->id)
+                        ->exists();
+                        @endphp
+
+                        <form method="POST" action="{{ route('games.favorite', $game) }}">
+                            @csrf
+                            <button type="submit" class="btn btn-sm {{ $isFav ? 'btn-danger' : 'btn-outline-danger' }}">
+                                {{ $isFav ? 'Remover dos Favoritos' : 'Favoritar ♥' }}
+                            </button>
+                        </form>
+
+                        <form method="POST" action="{{ route('games.rate', $game) }}" class="mt-2">
+                            @csrf
+                            <label for="rating-{{ $game->id }}" class="form-label mb-1">Avalie a acessibilidade:</label>
+                            <div class="d-flex align-items-center gap-1">
+                                @for ($i = 1; $i <= 5; $i++) <button type="submit" name="rating" value="{{ $i }}"
+                                    class="btn btn-sm {{ optional(Auth::user()->gameRatings->where('game_id', $game->id)->first())->rating == $i ? 'btn-warning' : 'btn-outline-warning' }}">
+                                    {{ $i }}
+                                    </button>
+                                    @endfor
+                            </div>
+                        </form>
+
+                        @else
+                        <a href="{{ route('login') }}" class="btn btn-sm btn-outline-secondary">
+                            Favoritar ♥ (entre para salvar)
+                        </a>
+
+
+                        @endauth
                     </div>
                 </div>
+
             </div>
         </div>
         @endforeach

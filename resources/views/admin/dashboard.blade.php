@@ -13,9 +13,17 @@
 
         <div class="mt-4">
             <h5>Gerenciar:</h5>
-            <ul>
-                <li><a href="#">Usuários</a> (em breve)</li>
-                <li><a href="#">Jogos</a> (em breve)</li>
+            <ul class="list-unstyled">
+                <li class="mb-2">
+                    <a href="{{ route('admin.users.index') }}" class="btn btn-outline-primary btn-sm">
+                        Usuários
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('admin.games.index') }}" class="btn btn-outline-primary btn-sm">
+                        Jogos
+                    </a>
+                </li>
             </ul>
         </div>
     </div>

@@ -14,7 +14,8 @@
             <!-- Links Esquerda -->
             {{-- <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}" href="{{ route('dashboard') }}">
+                    <a class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}"
+                        href="{{ route('dashboard') }}">
                         {{ __('Dashboard') }}
                     </a>
                 </li>
@@ -29,12 +30,28 @@
                         data-bs-toggle="dropdown" aria-expanded="false">
                         {{ Auth::user()->name }}
                     </a>
+
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                        <li>
+                            <a class="dropdown-item" href="{{ route('me.favorites') }}">
+                                Meus Favoritos
+                            </a>
+                        </li>
+
+                        @if(auth()->user()?->is_admin)
+                        <li>
+                            <a class="dropdown-item" href="{{ route('dashboard.admin') }}">
+                                Painel Admin
+                            </a>
+                        </li>
+                        @endif
+
                         <li>
                             <a class="dropdown-item" href="{{ route('profile.edit') }}">
                                 {{ __('Profile') }}
                             </a>
                         </li>
+
                         <li>
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
@@ -46,6 +63,7 @@
                     </ul>
                 </li>
                 @endauth
+
             </ul>
         </div>
     </div>
