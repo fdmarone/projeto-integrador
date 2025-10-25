@@ -14,7 +14,8 @@
             <!-- Links Esquerda -->
             {{-- <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}" href="{{ route('dashboard') }}">
+                    <a class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}"
+                        href="{{ route('dashboard') }}">
                         {{ __('Dashboard') }}
                     </a>
                 </li>
@@ -30,6 +31,12 @@
                         {{ Auth::user()->name }}
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                        @if(auth()->user()?->is_admin)
+                        <x-dropdown-link :href="route('dashboard.admin')">
+                            Painel Admin
+                        </x-dropdown-link>
+                        @endif
+
                         <li>
                             <a class="dropdown-item" href="{{ route('profile.edit') }}">
                                 {{ __('Profile') }}
