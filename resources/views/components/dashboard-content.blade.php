@@ -46,10 +46,25 @@
                                 {{ $isFav ? 'Remover dos Favoritos' : 'Favoritar ♥' }}
                             </button>
                         </form>
+
+                        <form method="POST" action="{{ route('games.rate', $game) }}" class="mt-2">
+                            @csrf
+                            <label for="rating-{{ $game->id }}" class="form-label mb-1">Avalie a acessibilidade:</label>
+                            <div class="d-flex align-items-center gap-1">
+                                @for ($i = 1; $i <= 5; $i++) <button type="submit" name="rating" value="{{ $i }}"
+                                    class="btn btn-sm {{ optional(Auth::user()->gameRatings->where('game_id', $game->id)->first())->rating == $i ? 'btn-warning' : 'btn-outline-warning' }}">
+                                    {{ $i }}
+                                    </button>
+                                    @endfor
+                            </div>
+                        </form>
+
                         @else
                         <a href="{{ route('login') }}" class="btn btn-sm btn-outline-secondary">
                             Favoritar ♥ (entre para salvar)
                         </a>
+
+
                         @endauth
                     </div>
                 </div>

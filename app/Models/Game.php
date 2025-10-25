@@ -26,4 +26,14 @@ class Game extends Model
     {
         return $this->belongsToMany(User::class, 'favorites')->withTimestamps();
     }
+    
+    public function ratings()
+    {
+        return $this->hasMany(GameRating::class);
+    }
+
+    public function averageAccessibility()
+    {
+        return $this->ratings()->avg('rating');
+    }
 }

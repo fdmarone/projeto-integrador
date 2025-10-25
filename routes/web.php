@@ -37,6 +37,9 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/me/favorites', [GamesController::class, 'favorites'])
         ->name('me.favorites');
+
+    Route::post('/games/{game}/rate', [GamesController::class, 'rate'])
+        ->name('games.rate');
 });
 
 

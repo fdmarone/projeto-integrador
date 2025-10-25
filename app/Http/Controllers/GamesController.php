@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Game;
 use App\Models\Category;
+use App\Models\GameRating;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -63,5 +64,23 @@ class GamesController extends Controller
     {
         $games = Game::all();
         return view('games.index', compact('games'));
+    }
+
+    public function rate(Request $request, Game $game)
+    {
+        $validated = $request->validate([
+            'rating' => 'required|integer|min:1|max:5',
+        ]);
+
+        GameRating::updateOrCreate(
+            ['user_id' => Auth::id(), 'game_id' => $game->id],
+            ['rating' => $validated['rating']]
+        );
+
+        // Recalcula a média e salva no campo classificacao_acessibilidade
+        $media = $game->ratings()->avg('rating');
+        $game->update(['classificacao_acessibilidade' => round($media, 1)]);
+
+        return back()->with('success', 'Avaliação registrada com sucesso!');
     }
 }
