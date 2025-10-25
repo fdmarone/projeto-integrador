@@ -86,3 +86,28 @@ docker compose up --build
 docker exec -it laravel-app php artisan migrate --seed
 7.	Acesse a aplicação:
 http://localhost:8080
+
+## ☁️ Implementação na AWS — Proposta básica
+
+![Imagem descrevendo como uma arquitetura de um workload pode se beneficiar com o produto AWS Fargate](/documentation/fargatediagram.png)
+
+Esta seção descreve uma proposta prática e mínima para implantar este projeto na AWS usando AWS Fargate (ECS) para execução dos containers. A proposta assume que você quer manter a aplicação em containers (como hoje com Docker) e migrar o runtime para a nuvem, usando serviços gerenciados sempre que possível.
+
+Resumo da arquitetura
+- Repositório de imagens: Amazon ECR
+- Execução de containers: Amazon ECS (Fargate)
+- Balanceamento / TLS / DNS: Application Load Balancer (ALB) + ACM (TLS) + Route 53 (DNS)
+- Banco de dados: Amazon RDS (preferível Aurora MySQL ou RDS MySQL) com snapshots e Multi-AZ para produção
+- Pool de conexões: RDS Proxy (recomendado) para reduzir problemas de excesso de conexões
+- Cache / Sessões: Amazon ElastiCache (Redis) — recomendado para produção
+- Storage de arquivos (uploads/public): Amazon S3 (configurar Laravel filesystem -> s3)
+- CI/CD: GitHub Actions (usar OIDC para assumir role AWS) — build, push para ECR e deploy ECS
+- Logs/Monitoramento: CloudWatch Logs (para Fargate) e CloudWatch Alarms
+- Segredos: AWS Secrets Manager (DB password, APP_KEY, etc.)
+- Filas: Amazon SQS (driver sqs do Laravel). Workers long-running: Fargate (Horizon/queue:work)
+
+Vantagens do Fargate (conforme a imagem de referência)
+- Não precisa provisionar EC2; define apenas CPU/memory por task
+- Paga-se pelo compute solicitado quando o container está em execução
+- Isolamento por aplicação por design
+- Boa compatibilidade com workloads Laravel (arquivos locais, Horizon, queue:work)
