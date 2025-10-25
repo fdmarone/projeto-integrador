@@ -30,9 +30,30 @@
                     <div class="mt-auto">
                         <p class="mb-1"><strong>Acessibilidade:</strong> {{ $game->classificacao_acessibilidade }}</p>
                         <p class="mb-0"><small>{{ $game->descricao_acessibilidade }}</small></p>
-                        <p class="mb-0"><strong>Categoria:</strong> {{ $game->category->name ?? 'N/A' }}</p>
+                        <p class="mb-2"><strong>Categoria:</strong> {{ $game->category->name ?? 'N/A' }}</p>
+
+                        @auth
+                        @php
+                        $isFav = Auth::user()
+                        ->favoriteGames()
+                        ->where('games.id', $game->id)
+                        ->exists();
+                        @endphp
+
+                        <form method="POST" action="{{ route('games.favorite', $game) }}">
+                            @csrf
+                            <button type="submit" class="btn btn-sm {{ $isFav ? 'btn-danger' : 'btn-outline-danger' }}">
+                                {{ $isFav ? 'Remover dos Favoritos' : 'Favoritar ♥' }}
+                            </button>
+                        </form>
+                        @else
+                        <a href="{{ route('login') }}" class="btn btn-sm btn-outline-secondary">
+                            Favoritar ♥ (entre para salvar)
+                        </a>
+                        @endauth
                     </div>
                 </div>
+
             </div>
         </div>
         @endforeach

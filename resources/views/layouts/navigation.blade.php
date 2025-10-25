@@ -30,11 +30,20 @@
                         data-bs-toggle="dropdown" aria-expanded="false">
                         {{ Auth::user()->name }}
                     </a>
+
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                        <li>
+                            <a class="dropdown-item" href="{{ route('me.favorites') }}">
+                                Meus Favoritos
+                            </a>
+                        </li>
+
                         @if(auth()->user()?->is_admin)
-                        <x-dropdown-link :href="route('dashboard.admin')">
-                            Painel Admin
-                        </x-dropdown-link>
+                        <li>
+                            <a class="dropdown-item" href="{{ route('dashboard.admin') }}">
+                                Painel Admin
+                            </a>
+                        </li>
                         @endif
 
                         <li>
@@ -42,6 +51,7 @@
                                 {{ __('Profile') }}
                             </a>
                         </li>
+
                         <li>
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
@@ -53,6 +63,7 @@
                     </ul>
                 </li>
                 @endauth
+
             </ul>
         </div>
     </div>

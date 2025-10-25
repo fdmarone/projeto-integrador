@@ -44,4 +44,8 @@ class User extends Authenticatable
         'password' => 'hashed',
         'is_admin' => 'boolean',
     ];
+    public function favoriteGames()
+    {
+        return $this->belongsToMany(Game::class, 'favorites')->withTimestamps();
+    }
 }
