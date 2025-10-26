@@ -2,6 +2,8 @@ version: '3.8'
 
 services:
   app:
+    environment:
+      DB_HOST: mysql
     build:
       context: .
       args:
@@ -17,6 +19,8 @@ services:
     volumes:
       - .:/var/www
       - storage-data:/var/www/storage
+      - vendor-data:/var/www/vendor         
+      - node-modules-data:/var/www/node_modules
     depends_on:
       - mysql
       - npm
@@ -36,9 +40,10 @@ services:
     image: node:18-alpine
     container_name: laravel-npm
     working_dir: /var/www
-    command: sh -c "npm install && npm run dev"
+    command: sh -c "npm run dev"
     volumes:
       - .:/var/www
+      - node-modules-data:/var/www/node_modules
     ports:
       - "5173:5173"
     stdin_open: true
@@ -50,13 +55,15 @@ services:
     ports:
       - "3306:3306"
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: laravel
-      MYSQL_USER: laravel
-      MYSQL_PASSWORD: secret
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
     volumes:
       - mysql_data:/var/lib/mysql
 
 volumes:
   mysql_data:
   storage-data:
+  vendor-data: {}
+  node-modules-data: {}
