@@ -14,13 +14,16 @@ fi
 echo "Subindo containers (pode demorar na primeira vez)..."
 docker compose up --build -d
 
+echo "Aguardando 10 segundos para os serviços inicializarem..."
+sleep 10
+
 # 3. Gera a APP_KEY do Laravel
 echo "Gerando APP_KEY do Laravel..."
 docker compose exec app php artisan key:generate
 
 # 4. Roda as migrations e seeds
 echo "Rodando migrations e seeds..."
-docker compose exec app php artisan migrate --seed
+docker compose exec app php artisan migrate:fresh --seed
 
 echo ""
 echo "------------------------------------------------"

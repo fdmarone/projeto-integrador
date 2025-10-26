@@ -19,11 +19,13 @@ services:
     volumes:
       - .:/var/www
       - storage-data:/var/www/storage
-      - vendor-data:/var/www/vendor         
+      - vendor-data:/var/www/vendor      
       - node-modules-data:/var/www/node_modules
     depends_on:
-      - mysql
-      - npm
+      mysql:
+        condition: service_healthy
+      npm:
+        condition: service_started
 
   web:
     image: nginx:alpine
@@ -40,7 +42,7 @@ services:
     image: node:18-alpine
     container_name: laravel-npm
     working_dir: /var/www
-    command: sh -c "npm run dev"
+    command: sh -c "npm install && npm run dev"
     volumes:
       - .:/var/www
       - node-modules-data:/var/www/node_modules
@@ -61,6 +63,12 @@ services:
       MYSQL_PASSWORD: ${DB_PASSWORD}
     volumes:
       - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "${DB_USERNAME}", "-p${DB_PASSWORD}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
 
 volumes:
   mysql_data:
