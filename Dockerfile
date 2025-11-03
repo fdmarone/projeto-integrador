@@ -1,4 +1,4 @@
-FROM php:8.2-fpm
+FROM php:8.3-fpm
 
 # Recebe UID e GID como argumentos para criar usuário compatível com o host
 ARG UID=1000
@@ -27,10 +27,13 @@ USER laravel
 # Copia o código da aplicação
 COPY --chown=laravel:laravel . .
 
-# Instala dependências PHP
-RUN composer install --no-interaction
+
+# # Instala dependências PHP
+# RUN composer install --no-interaction 
 
 # Garante permissões corretas para storage/cache
 RUN mkdir -p storage bootstrap/cache && chmod -R 775 storage bootstrap/cache
+
+# RUN chown -R laravel:laravel /var/www
 
 CMD ["php-fpm"]

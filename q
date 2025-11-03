@@ -1,0 +1,16 @@
+[33maf0b4d3[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m Merge pull request #4 from fdmarone/novas-funcionalidades
+[33mc5d0356[m[33m ([m[1;31morigin/novas-funcionalidades[m[33m)[m nota de acessibilidade
+[33me0c839f[m usuario favoritar jogo
+[33m05ca8a9[m edit de users e usuarios ok
+[33md04cca1[m formularios back e front
+[33mcf03709[m Merge pull request #3 from fdmarone/docs/aws-cloud
+[33m9eed7d8[m[33m ([m[1;31morigin/docs/aws-cloud[m[33m)[m docs: add aws architecture initial section
+[33m250b13d[m Merge pull request #2 from fdmarone/navegacao
+[33m8839a76[m[33m ([m[1;31morigin/navegacao[m[33m)[m alteracao na welcome
+[33m5a88c74[m Merge pull request #1 from fdmarone/navegacao
+[33m7ab4296[m ajustes navegacao
+[33md4071f8[m chore(backend): add docker-compose for mysql service
+[33m29f2f8b[m feat(backend): scaffolding express server, database config and .env template
+[33m248b388[m filtragem por categoria
+[33m561a21e[m atualizacao env.example
+[33m66df786[m first commit

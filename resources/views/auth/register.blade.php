@@ -1,10 +1,10 @@
 <x-guest-layout>
     <div class="container mt-5">
-        <div class="row justify-content-center">
+        <!-- <div class="row justify-content-center">
             <div class="col-md-6">
                 <div class="card shadow-sm">
-                    <div class="card-body">
-                        <h2 class="card-title text-center mb-4">{{ __('Cadastre-se') }}</h2>
+                    <div class="card-body"> -->
+                        <h2 class="card-title text-center mb-4 font-medium text-xl">{{ __('Cadastre-se') }}</h2>
 
                         <form method="POST" action="{{ route('register') }}">
                             @csrf
@@ -31,24 +31,30 @@
                             </div>
 
                             <!-- Confirm Password -->
-                            <div class="mb-4">
+                            <div class="mb-1">
                                 <x-input-label for="password_confirmation" :value="__('Confirme Senha')" />
                                 <x-text-input id="password_confirmation" class="form-control" type="password" name="password_confirmation" required autocomplete="new-password" />
                                 <x-input-error :messages="$errors->get('password_confirmation')" class="text-danger mt-1" />
                             </div>
 
-                            <div class="d-flex justify-content-between align-items-center">
-                                <a class="text-decoration-none small" href="{{ route('login') }}">
-                                    {{ __('Já possui cadastro?') }}
-                                </a>
+                            <p class=" text-xs text-red-600">Todos os campos são obrigatórios</p>
+
+                            <div class="d-flex flex-row-reverse mb-10">
                                 <x-primary-button class="btn btn-primary">
                                     {{ __('Cadastrar') }}
                                 </x-primary-button>
                             </div>
                         </form>
+
+                        <div class="flex gap-1 mt-4 mb-7 justify-center small">
+                            <span>Já possui cadastro?</span>
+                            <a class="text-decoration-underline" href="{{ route('login') }}">
+                                {{ __('Fazer login') }}
+                            </a>
+                        </div>
                     </div>
-                </div>
+                <!-- </div>
             </div>
         </div>
-    </div>
+    </div> -->
 </x-guest-layout>

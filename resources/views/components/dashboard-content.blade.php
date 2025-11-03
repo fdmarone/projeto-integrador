@@ -1,8 +1,9 @@
 <div class="py-6 px-4">
+    <h2 class="text-2xl mb-4">Jogos em Destaque</h2>
     <!-- Filtro por múltiplas categorias -->
     <form method="GET" action="{{ request()->routeIs('dashboard') ? route('dashboard') : route('home') }}" class="mb-4">
-        <label for="categories" class="form-label">Filtrar por acessibilidade:</label>
-        <select name="categories[]" id="categories" class="form-select selectpicker w-50" multiple
+        <label for="categories" class="form-label text-lg mr-2">Filtrar por acessibilidade:</label>
+        <select name="categories[]" id="categories" class="form-select selectpicker w-50 p-0 rounded-lg mr-4" multiple
             data-live-search="true" data-actions-box="true" title="Selecione as categorias">
             @foreach ($categories as $category)
             <option value="{{ $category->id }}" {{ in_array($category->id, $selected ?? []) ? 'selected' : '' }}>
@@ -10,7 +11,7 @@
             </option>
             @endforeach
         </select>
-        <button type="submit" class="btn btn-primary mt-2">Filtrar</button>
+        <button type="submit" class="btn btn-primary h-18 w-20">Filtrar</button>
     </form>
 
     @if ($games->isEmpty())
@@ -18,19 +19,24 @@
     @else
     <div class="row">
         @foreach ($games as $game)
-        <div class="col-md-4 mb-4">
-            <div class="card h-100 border-primary shadow-sm">
+        <div class="col-md-3 mb-3 card-master">
+            <div class="card border-primary h-100 shadow-sm">
                 @if ($game->imagem_url)
                 <img src="{{ $game->imagem_url }}" class="card-img-top" alt="Capa do jogo {{ $game->nome }}">
                 @endif
                 <div class="card-body d-flex flex-column">
-                    <h5 class="card-title fw-bold">{{ $game->nome }}</h5>
-                    <p class="card-text mb-2">{{ Str::limit($game->descricao, 120) }}</p>
+                    <h5 class="card-title fw-bold">{{ ucwords(str_replace('_', ' ', $game->nome)) }}</h5>
+                    <p class="card-text mb-3 text-sm">{{ Str::limit($game->descricao, 120) }}</p>
 
                     <div class="mt-auto">
-                        <p class="mb-1"><strong>Acessibilidade:</strong> {{ $game->classificacao_acessibilidade }}</p>
-                        <p class="mb-0"><small>{{ $game->descricao_acessibilidade }}</small></p>
-                        <p class="mb-2"><strong>Categoria:</strong> {{ $game->category->name ?? 'N/A' }}</p>
+                        <p class="mb-1 text-8px"><strong>Acessibilidade:</strong> {{ $game->classificacao_acessibilidade }}</p>
+                        <div class="p-0">
+                            <p class="mb-0"><strong>Categoria:</strong> {{ number_format($game->classificacao_acessibilidade, 1) ?? 'N/A' }}</p>
+                            <!-- <p class="mb-0"><strong>Categoria:</strong> {{ $game->category->name ?? 'N/A' }}</p> -->
+                            <!-- <p class="mb-0"><small>{{ $game->descricao_acessibilidade }}</small></p> -->
+                             <p class="mb-2 text-sm mt-0.5 text-gray-500">{{ ucwords(str_replace(['_', ','], [' ', ', '], $game->descricao_acessibilidade)) }}
+                             </p>
+                        </div>
 
                         @auth
                         @php
