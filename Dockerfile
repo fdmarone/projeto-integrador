@@ -8,8 +8,10 @@ ARG GID=1000
 RUN apt-get update && apt-get install -y \
     sqlite3 libsqlite3-dev \
     libzip-dev zip unzip \
-    git curl libpng-dev libonig-dev libxml2-dev \
-    && docker-php-ext-install pdo pdo_mysql pdo_sqlite zip
+    git curl libpng-dev libjpeg-dev libfreetype6-dev libonig-dev libxml2-dev \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install pdo pdo_mysql pdo_sqlite zip mbstring gd
+
 
 # Cria usuário compatível com o host
 RUN addgroup --gid ${GID} laravel \
