@@ -22,7 +22,8 @@
                                 <p class="card-text mb-2">{{ Str::limit($game->descricao, 120) }}</p>
                                 <div class="mt-auto">
                                     <p class="mb-1"><strong>Acessibilidade:</strong> {{ $game->classificacao_acessibilidade }}</p>
-                                    <p class="mb-0"><small>{{ $game->descricao_acessibilidade }}</small></p>
+                                    <!-- <p class="mb-0"><small>{{ $game->descricao_acessibilidade }}</small></p> -->
+                                    <p class="mb-2 text-sm mt-0.5 text-gray-500"><small>{{ ucwords(str_replace(['_', ','], [' ', ', '], $game->descricao_acessibilidade)) }}</small></p>
                                     <form method="POST" action="{{ route('games.favorite', $game) }}" class="mt-2">
                                         @csrf
                                         <button class="btn btn-sm btn-danger">Remover dos Favoritos</button>

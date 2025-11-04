@@ -1,4 +1,4 @@
-FROM php:8.2-fpm
+FROM php:8.3-fpm
 
 # Recebe UID e GID como argumentos para criar usuário compatível com o host
 ARG UID=1000
@@ -27,6 +27,7 @@ COPY . .
 # Adiciona o diretório como seguro para o Git (como root)
 RUN git config --global --add safe.directory /var/www
 
+
 # Cria os diretórios (como root)
 RUN mkdir -p storage bootstrap/cache
 
@@ -36,10 +37,13 @@ RUN chown -R laravel:laravel /var/www
 # ACERTA A PERMISSÃO: Libera escrita no storage/cache (como root)
 RUN chmod -R 777 /var/www/storage /var/www/bootstrap/cache
 
+
 # Troca para o usuário não-root
 USER laravel
 
 # Instala dependências PHP (agora como 'laravel')
 RUN composer install --no-interaction
 
+
 CMD ["php-fpm"]
+

@@ -1,4 +1,4 @@
-version: '3.8'
+
 
 services:
   app:
@@ -17,6 +17,7 @@ services:
     expose:
       - 9000
     volumes:
+      # - ./src:/var/www
       - .:/var/www
       - storage-data:/var/www/storage
       - vendor-data:/var/www/vendor      
@@ -33,6 +34,7 @@ services:
     ports:
       - "8080:80"
     volumes:
+      # - ./src:/var/www
       - .:/var/www
       - ./nginx.conf:/etc/nginx/conf.d/default.conf
     depends_on:
@@ -44,8 +46,10 @@ services:
     working_dir: /var/www
     command: sh -c "npm install && npm run dev"
     volumes:
+
       - .:/var/www
       - node-modules-data:/var/www/node_modules
+
     ports:
       - "5173:5173"
     stdin_open: true

@@ -1,13 +1,13 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+<nav>
     <div class="container-fluid">
         <!-- Logo ou Nome -->
         {{-- <a class="navbar-brand" href="{{ route('dashboard') }}">{{ config('app.name', 'Laravel') }}</a> --}}
 
         <!-- Botão Hamburguer -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
-        </button>
+        </button> -->
 
         <!-- Itens do Menu -->
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
