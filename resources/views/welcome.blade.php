@@ -14,6 +14,49 @@
                 <a href="{{ url('/dashboard') }}" class="text-decoration-none text-gray-500 fw-semibold">
                     Dashboard
                 </a>
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <!-- Nome do usuário -->
+                @auth
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        {{ Auth::user()->name }}
+                    </a>
+
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                        <li>
+                            <a class="dropdown-item" href="{{ route('me.favorites') }}">
+                                Meus Favoritos
+                            </a>
+                        </li>
+
+                        @if(auth()->user()?->is_admin)
+                        <li>
+                            <a class="dropdown-item" href="{{ route('dashboard.admin') }}">
+                                Painel Admin
+                            </a>
+                        </li>
+                        @endif
+
+                        <li>
+                            <a class="dropdown-item" href="{{ route('profile.edit') }}">
+                                {{ __('Profile') }}
+                            </a>
+                        </li>
+
+                        <li>
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <button type="submit" class="dropdown-item">
+                                    {{ __('Log Out') }}
+                                </button>
+                            </form>
+                        </li>
+                    </ul>
+                </li>
+                @endauth
+
+            </ul>
                 @else
                 <a href="{{ route('login') }}" class="text-decoration-none text-gray-500 fw-semibold">
                     Log in
