@@ -2,6 +2,8 @@
 
 services:
   app:
+    environment:
+      DB_HOST: mysql
     build:
       context: .
       args:
@@ -18,9 +20,13 @@ services:
       # - ./src:/var/www
       - .:/var/www
       - storage-data:/var/www/storage
+      - vendor-data:/var/www/vendor      
+      - node-modules-data:/var/www/node_modules
     depends_on:
-      - mysql
-      - npm
+      mysql:
+        condition: service_healthy
+      npm:
+        condition: service_started
 
   web:
     image: nginx:alpine
@@ -40,7 +46,10 @@ services:
     working_dir: /var/www
     command: sh -c "npm install && npm run dev"
     volumes:
-      - .:/var/www:cached
+
+      - .:/var/www
+      - node-modules-data:/var/www/node_modules
+
     ports:
       - "5173:5173"
     stdin_open: true
@@ -52,13 +61,21 @@ services:
     ports:
       - "3306:3306"
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: laravel
-      MYSQL_USER: laravel
-      MYSQL_PASSWORD: secret
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
     volumes:
       - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "${DB_USERNAME}", "-p${DB_PASSWORD}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
 
 volumes:
   mysql_data:
   storage-data:
+  vendor-data: {}
+  node-modules-data: {}

@@ -18,22 +18,32 @@ RUN addgroup --gid ${GID} laravel \
 # Instala Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Define diretório de trabalho
+# Define diretório de trabalho (ainda como root)
 WORKDIR /var/www
 
-# Troca para usuário não-root
+# Copia os arquivos (ainda como root)
+COPY . .
+
+# Adiciona o diretório como seguro para o Git (como root)
+RUN git config --global --add safe.directory /var/www
+
+
+# Cria os diretórios (como root)
+RUN mkdir -p storage bootstrap/cache
+
+# ACERTA O DONO: Muda o dono de TUDO para 'laravel' (como root)
+RUN chown -R laravel:laravel /var/www
+
+# ACERTA A PERMISSÃO: Libera escrita no storage/cache (como root)
+RUN chmod -R 777 /var/www/storage /var/www/bootstrap/cache
+
+
+# Troca para o usuário não-root
 USER laravel
 
-# Copia o código da aplicação
-COPY --chown=laravel:laravel . .
+# Instala dependências PHP (agora como 'laravel')
+RUN composer install --no-interaction
 
-
-# # Instala dependências PHP
-# RUN composer install --no-interaction 
-
-# Garante permissões corretas para storage/cache
-RUN mkdir -p storage bootstrap/cache && chmod -R 775 storage bootstrap/cache
-
-# RUN chown -R laravel:laravel /var/www
 
 CMD ["php-fpm"]
+
