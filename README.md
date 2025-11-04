@@ -12,31 +12,32 @@ Este projeto é uma aplicação Laravel containerizada com Docker, incluindo: PH
 
 ## 🚀 Instalação do Projeto
 
-1. Clone o repositório:  
-   `git clone https://github.com/fdmarone/projeto-integrador.git && cd laravel-app`
-
-2. Copie o arquivo `.env`:  
-   `cp .env.example .env`
-
-3. Verifique se o `.env` contém as variáveis UID e GID. Você pode descobrir os valores com os comandos `id -u` e `id -g`. Por exemplo:  
-   ```
-   UID=1000  
-   GID=1000
+1. **Clone o repositório:**  
+   ```bash
+   git clone https://github.com/fdmarone/projeto-integrador.git
+   cd projeto-integrador
    ```
 
-4. Suba os containers:  
-   `docker compose up --build`  
+2. **Dê permissão de execução ao script (apenas na primeira vez):**  
+   ```bash
+   chmod +x start.sh
+   ```
 
-   Este comando irá:
-   - Construir a imagem do app
-   - Instalar dependências do Laravel e do Node.js
-   - Iniciar os containers `app`, `web`, `mysql` e `npm`
+3. **Inicie todo o ambiente com um único comando:**  
+   ```bash
+   ./start.sh
+   ```
 
-5. Após os containers estarem ativos, execute as migrations e seeds:  
-   `docker exec -it laravel-app php artisan migrate --seed`
+   Esse script irá:
+   - Criar e configurar o arquivo `.env` (se necessário);
+   - Construir e iniciar todos os containers (`app`, `web`, `mysql`, etc.);
+   - Instalar as dependências do Laravel e do Node.js;
+   - Executar as migrations e seeds;
+   - Deixar o sistema pronto para uso.
 
-6. Acesse o sistema:
-   - Frontend: http://localhost:8080
+4. **Acesse a aplicação:**  
+   - **Frontend:** http://localhost:8080  
+   - **API / Backend (Laravel):** http://localhost:8000  
 
 ## 🛠️ Comandos úteis
 
