@@ -1,8 +1,13 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Painel Administrativo
-        </h2>
+        <div class="container py-3 position-relative mb-4">
+            <h2 class="w-100 text-center text-xl font-semibold fs-3 text-dark mb-0">
+                Painel Administrativo
+            </h2>
+            <div class="position-absolute end-0 top-50 translate-middle-y">
+                <x-return-to-selected-page route="dashboard" />
+            </div>
+        </div>
     </x-slot>
 
     <div class="py-6 px-4">
