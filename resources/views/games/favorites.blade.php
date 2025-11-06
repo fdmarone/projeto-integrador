@@ -1,8 +1,8 @@
 <x-app-layout>
     <x-slot name="header">
-        <div class="d-flex justify-content-between align-items-center w-100">
+        <div class="d-flex justify-content-between align-items-center w-100 mb-4">
             <h2 class="font-semibold text-xl mb-0">Meus Favoritos</h2>
-            <a href="{{ route('dashboard') }}" class="btn btn-outline-secondary btn-sm">← Voltar</a>
+            <x-return-to-selected-page route="dashboard"/>
         </div>
     </x-slot>
 
