@@ -9,16 +9,16 @@
             </div>
 
             @if (Route::has('login'))
-            <div class="d-flex align-items-center gap-3">
+            <div class="d-flex align-items-center gap-5">
                 @auth
-                <a href="{{ url('/dashboard') }}" class="text-decoration-none text-gray-500 fw-semibold">
+                <a href="{{ url('/dashboard') }}" class="text-decoration-none text-gray-600 fw-semibold">
                     Dashboard
                 </a>
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <!-- Nome do usuário -->
                 @auth
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                <li class="nav-item dropdown text-gray-600 fw-semibold">
+                    <a class="nav-link dropdown-toggle p-0" href="#" id="userDropdown" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
                         {{ Auth::user()->name }}
                     </a>

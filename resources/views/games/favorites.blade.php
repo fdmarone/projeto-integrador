@@ -1,12 +1,18 @@
 <x-app-layout>
     <x-slot name="header">
-        <div class="d-flex justify-content-between align-items-center w-100 mb-4">
-            <h2 class="font-semibold text-xl mb-0">Meus Favoritos</h2>
+        <div class="d-flex justify-content-between align-items-center w-100">
+            <div class="logo">
+                <img src="https://marketplace.canva.com/eyOFA/MAGxQZeyOFA/1/tl/canva-pixelated-game-controller-illustration-MAGxQZeyOFA.png" alt="" class="w-12">
+                <h2 class="fw-semibold fs-4 mb-2 mb-sm-0 text-dark">
+                    {{ __('PlayForAll') }}
+                </h2>
+            </div>
             <x-return-to-selected-page route="dashboard"/>
         </div>
     </x-slot>
-
+    
     <div class="py-6 px-4">
+        <h2 class="text-2xl mb-2">Meus Favoritos</h2>
         @if ($games->isEmpty())
             <div class="alert alert-info">Você ainda não favoritou nenhum jogo.</div>
         @else
