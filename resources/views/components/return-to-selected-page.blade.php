@@ -1,0 +1,1 @@
+<a href="{{ isset($params) ? route($route ?? 'dashboard', $params) : route($route ?? 'dashboard') }}" class="btn btn-outline-secondary btn-sm">← Voltar</a>

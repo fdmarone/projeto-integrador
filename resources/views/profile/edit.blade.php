@@ -1,9 +1,12 @@
 <x-app-layout>
     <x-slot name="header">
-        <div class="container py-3">
-            <h2 class="text-center fw-semibold fs-3 text-dark">
+        <div class="container py-3 position-relative">
+            <h2 class="w-100 text-center fw-semibold fs-3 text-dark mb-0">
                 {{ __('Perfil') }}
             </h2>
+            <div class="position-absolute end-0 top-50 translate-middle-y">
+                <x-return-to-selected-page route="dashboard" />
+            </div>
         </div>
     </x-slot>
 
