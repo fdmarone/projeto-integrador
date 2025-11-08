@@ -21,3 +21,4 @@ yarn-error.log
 # Backend-specific ignores
 backend/node_modules/
 backend/.env
+bootstrap/cache/
