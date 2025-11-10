@@ -2,7 +2,7 @@
     <x-slot name="header">
         <div class="d-flex justify-content-between align-items-center w-100">
             <div class="logo">
-                <img src="https://marketplace.canva.com/eyOFA/MAGxQZeyOFA/1/tl/canva-pixelated-game-controller-illustration-MAGxQZeyOFA.png" alt="" class="w-12">
+                <img src="https://i.ibb.co/Dn4bkBp/game1.png" alt="" class="w-12">
                 <h2 class="fw-semibold fs-4 mb-2 mb-sm-0 text-dark">
                     {{ __('PlayForAll') }}
                 </h2>

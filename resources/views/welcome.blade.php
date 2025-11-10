@@ -2,7 +2,7 @@
     <x-slot name="header">
         <div class="w-100 d-flex justify-content-between align-items-center flex-wrap">
             <div class="logo">
-                <img src="https://marketplace.canva.com/eyOFA/MAGxQZeyOFA/1/tl/canva-pixelated-game-controller-illustration-MAGxQZeyOFA.png" alt="" class="w-12">
+                <img src="https://i.ibb.co/Dn4bkBp/game1.png" alt="" class="w-12">
                 <h2 class="fw-semibold fs-4 mb-2 mb-sm-0 text-dark">
                     {{ __('PlayForAll') }}
                 </h2>
@@ -58,12 +58,12 @@
 
             </ul>
                 @else
-                <a href="{{ route('login') }}" class="text-decoration-none text-gray-500 fw-semibold">
+                <a href="{{ route('login') }}" class="text-decoration-none text-gray-600 fw-semibold">
                     Log in
                 </a>
 
                 @if (Route::has('register'))
-                <a href="{{ route('register') }}" class="text-decoration-none text-gray-500 fw-semibold">
+                <a href="{{ route('register') }}" class="text-decoration-none text-gray-600 fw-semibold">
                     Registre-se
                 </a>
                 @endif
