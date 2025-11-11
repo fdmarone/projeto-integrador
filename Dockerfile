@@ -12,7 +12,6 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install pdo pdo_mysql pdo_sqlite zip mbstring gd
 
-
 # Cria usuário compatível com o host
 RUN addgroup --gid ${GID} laravel \
     && adduser --disabled-password --gecos "" --uid ${UID} --gid ${GID} laravel
@@ -29,7 +28,6 @@ COPY . .
 # Adiciona o diretório como seguro para o Git (como root)
 RUN git config --global --add safe.directory /var/www
 
-
 # Cria os diretórios (como root)
 RUN mkdir -p storage bootstrap/cache
 
@@ -39,13 +37,10 @@ RUN chown -R laravel:laravel /var/www
 # ACERTA A PERMISSÃO: Libera escrita no storage/cache (como root)
 RUN chmod -R 777 /var/www/storage /var/www/bootstrap/cache
 
-
 # Troca para o usuário não-root
 USER laravel
 
 # Instala dependências PHP (agora como 'laravel')
 RUN composer install --no-interaction
 
-
 CMD ["php-fpm"]
-
