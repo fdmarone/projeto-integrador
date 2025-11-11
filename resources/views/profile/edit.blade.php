@@ -1,16 +1,24 @@
 <x-app-layout>
     <x-slot name="header">
-        <div class="container py-3 position-relative">
-            <h2 class="w-100 text-center fw-semibold fs-3 text-dark mb-0">
-                {{ __('Perfil') }}
-            </h2>
+        <div>
+        <div class="container position-relative p-0">
+            <div class="logo">
+                <img src="https://i.ibb.co/Dn4bkBp/game1.png" alt="" class="w-12">
+                <h2 class="fw-semibold fs-4 mb-2 mb-sm-0 text-dark">
+                    {{ __('PlayForAll') }}
+                </h2>
+            </div>
             <div class="position-absolute end-0 top-50 translate-middle-y">
                 <x-return-to-selected-page route="dashboard" />
             </div>
         </div>
     </x-slot>
 
-    <div class="container py-5">
+    <div class="py-6 px-4">
+        <h2 class="text-2xl mb-2">
+            {{ __('Perfil') }}
+        </h2>
+
         <div class="accordion" id="profileAccordion">
 
             {{-- Informações do Perfil --}}

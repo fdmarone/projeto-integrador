@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <div class="logo">
-            <img src="https://marketplace.canva.com/eyOFA/MAGxQZeyOFA/1/tl/canva-pixelated-game-controller-illustration-MAGxQZeyOFA.png" alt="" class="w-12">
+            <img src="https://i.ibb.co/Dn4bkBp/game1.png" alt="" class="w-12">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 {{ __('PlayForAll') }}
             </h2>
