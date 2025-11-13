@@ -106,9 +106,15 @@ Resumo da arquitetura
 - Logs/Monitoramento: CloudWatch Logs (para Fargate) e CloudWatch Alarms
 - Segredos: AWS Secrets Manager (DB password, APP_KEY, etc.)
 - Filas: Amazon SQS (driver sqs do Laravel). Workers long-running: Fargate (Horizon/queue:work)
-
 Vantagens do Fargate (conforme a imagem de referência)
 - Não precisa provisionar EC2; define apenas CPU/memory por task
 - Paga-se pelo compute solicitado quando o container está em execução
 - Isolamento por aplicação por design
 - Boa compatibilidade com workloads Laravel (arquivos locais, Horizon, queue:work)
+
+  ## 👷Integrantes do grupo
+* [@fdmarone](https://github.com/fdmarone) / Flora dos Anjos Marone
+* [@eprahoje](https://github.com/eprahoje) / Gabriel Rodrigues Caetano da Silva
+* [@Pedrodev17](https://github.com/Pedrodev17) / Pedro Henrique Marins da Silva
+* [@tamiressena](https://github.com/tamiressena) / Tamires Sena Afonso
+* [@Levinni](https://github.com/Levinni) / Vinícius Rodrigues Leite
