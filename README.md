@@ -88,6 +88,9 @@ docker exec -it laravel-app php artisan migrate --seed
 7.	Acesse a aplicação:
 http://localhost:8080
 
+## 📽️ Vídeo apresentando o projeto
+[![Thumbnail do vídeo de apresentação com a página inicial do projeto](/documentation/VideoProjetoIntegradorThumb.png)](https://youtu.be/5Rro_7UALd4?si=t3ymdnBrroDoehBu)
+
 ## ☁️ Implementação na AWS — Proposta básica
 
 ![Imagem descrevendo como uma arquitetura de um workload pode se beneficiar com o produto AWS Fargate](/documentation/fargatediagram.png)
