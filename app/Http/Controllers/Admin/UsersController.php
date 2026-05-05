@@ -13,12 +13,12 @@ class UsersController extends Controller
     {
         $q = $request->input('q');
         $users = User::when($q, fn($s) =>
-                $s->where('name','like',"%$q%")->orWhere('email','like',"%$q%"))
+        $s->where('name', 'like', "%$q%")->orWhere('email', 'like', "%$q%"))
             ->orderBy('name')
             ->paginate(12)
             ->withQueryString();
 
-        return view('admin.users.index', compact('users','q'));
+        return view('admin.users.index', compact('users', 'q'));
     }
 
     public function edit(User $user)
@@ -29,12 +29,12 @@ class UsersController extends Controller
     public function update(Request $request, User $user)
     {
         $data = $request->validate([
-            'name'  => ['required','string','max:255'],
-            'email' => ['required','email','max:255', Rule::unique('users')->ignore($user->id)],
+            'name'  => ['required', 'string', 'max:255'],
+            'email' => ['required', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
         ]);
 
         $user->update($data);
-        return redirect()->route('admin.users.index')->with('ok','Usuário atualizado.');
+        return redirect()->route('admin.users.index')->with('ok', 'Usuário atualizado.');
     }
 
     public function toggleAdmin(User $user)
@@ -50,6 +50,6 @@ class UsersController extends Controller
         abort_if(auth()->id() === $user->id, 403); // não apagar a si mesmo
         $user->delete();
 
-        return back()->with('ok','Usuário removido.');
+        return back()->with('ok', 'Usuário removido.');
     }
 }
