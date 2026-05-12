@@ -65,12 +65,6 @@ sudo chown -R $USER:www-data storage bootstrap/cache
 sudo chmod -R 775 storage bootstrap/cache
 ```
 
-## 📄 Documentação do Projeto
-
-A documentação completa do Projeto Integrador, contendo análise do problema, definição de stakeholders, personas, metodologia, arquitetura e desenvolvimento do MVP, está disponível no PDF abaixo:
-
-📘 [Abrir documentação completa](./documentation/PI_Análise_de_Soluções_Integradas_para_Organizações.pdf)
-
 <!-- TLDR: -->
 
 Projeto Laravel com Docker
@@ -93,6 +87,12 @@ docker compose up --build
 docker exec -it laravel-app php artisan migrate --seed
 7.	Acesse a aplicação:
 http://localhost:8080
+
+## 📄 Documentação do Projeto
+
+A documentação completa do Projeto Integrador, contendo análise do problema, definição de stakeholders, personas, metodologia, arquitetura e desenvolvimento do MVP, está disponível no PDF abaixo:
+
+📘 [Abrir documentação completa](./documentation/PI_Análise_de_Soluções_Integradas_para_Organizações.pdf)
 
 ## 📽️ Vídeo apresentando o projeto
 [![Thumbnail do vídeo de apresentação com a página inicial do projeto](/documentation/VideoProjetoIntegradorThumb.png)](https://youtu.be/5Rro_7UALd4?si=t3ymdnBrroDoehBu)
