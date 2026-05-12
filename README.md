@@ -65,6 +65,12 @@ sudo chown -R $USER:www-data storage bootstrap/cache
 sudo chmod -R 775 storage bootstrap/cache
 ```
 
+## 📄 Documentação do Projeto
+
+A documentação completa do Projeto Integrador, contendo análise do problema, definição de stakeholders, personas, metodologia, arquitetura e desenvolvimento do MVP, está disponível no PDF abaixo:
+
+📘 [Abrir documentação completa](./documentation/PI_Análise_de_Soluções_Integradas_para_Organizações.pdf)
+
 <!-- TLDR: -->
 
 Projeto Laravel com Docker
